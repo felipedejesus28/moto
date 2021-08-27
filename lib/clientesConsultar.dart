@@ -6,10 +6,10 @@ import 'package:firebase_core/firebase_core.dart';
 final bd = FirebaseFirestore.instance;
 
 main() {
-  runApp(Inicio());
+  runApp(ClientesConsultar());
 }
 
-class Inicio extends StatefulWidget {
+class ClientesConsultar extends StatefulWidget {
   @override
   createState() => Estado();
 }
@@ -31,7 +31,7 @@ class Estado extends State {
             children: [
               ListTile(
                 title: Text("Felipe"),
-                subtitle: Text("Italika"),
+                subtitle: Text("5513898768"),
               )
             ],
           ),

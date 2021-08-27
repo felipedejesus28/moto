@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'inicio.dart';
+import 'clientesConsultar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -16,7 +16,7 @@ class Estado extends State<Motolab> {
   Widget build(BuildContext context) => MaterialApp(
       initialRoute: '/',
       routes: {
-        '/' : (context) => Inicio(),
+        '/' : (context) => ClientesConsultar(),
       }
   );
 }
