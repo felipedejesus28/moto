@@ -89,9 +89,12 @@ void actualizar() async {
 
 void consultar() async {
   try {
-    await bd.collection('clientes').get().then((instantanea) {
-      instantanea.docs.forEach((element) {
-        print(element.data());
+    await bd
+        .collection('clientes')
+        .get()
+        .then((instantanea) {
+            instantanea.docs.forEach((element) {
+            print(element.data());
       });
     });
   } catch (error) {
