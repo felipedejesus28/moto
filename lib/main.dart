@@ -14,6 +14,7 @@ class Estado extends State<Motolab> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/' : (context) => ClientesConsultar(),

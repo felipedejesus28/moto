@@ -20,24 +20,28 @@ class Estado extends State {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
       setState(() {});
+      //    consultar();
     });
   }
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
-          appBar: AppBar(title: Text("Clientes")),
-          body: ListView(
-            children: [
-              ListTile(
-                title: Text("Felipe"),
-                subtitle: Text("5513898768"),
+          appBar: AppBar(
+            title: Text("Clientes"),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Icon(Icons.search),
               )
             ],
           ),
+          body: crearListado(),
           floatingActionButton: FloatingActionButton(
               onPressed: () {
-                insertar();
+                // insertar();
+                consultar();
               },
               child: Icon(Icons.add)),
         ),
@@ -92,4 +96,15 @@ void consultar() async {
   } catch (error) {
     print(error);
   }
+}
+
+ListView crearListado() {
+  return ListView(
+    children: [
+      ListTile(
+        title: Text("Felipe"),
+        subtitle: Text("55 13 89 87 68"),
+      )
+    ],
+  );
 }
