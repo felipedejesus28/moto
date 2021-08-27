@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "321819951620",
+    "project_id": "motolab-7b4c1",
+    "storage_bucket": "motolab-7b4c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321819951620:android:4e19ae0d9f858dd42a6b51",
+        "android_client_info": {
+          "package_name": "com.example.motolab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321819951620-2nsk0a398guau4fq51d153lr3voe7ia5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDEJg5rUBO1R3l3atzOl0DL0gpSpQgQRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321819951620-2nsk0a398guau4fq51d153lr3voe7ia5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
