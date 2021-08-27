@@ -20,7 +20,8 @@ class Estado extends State {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
       setState(() {});
-      //    consultar();
+          consultar();
+          print("Ya cargó");
     });
   }
 
