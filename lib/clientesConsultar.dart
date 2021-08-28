@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:motolab/drawer.dart';
 
 final bd = FirebaseFirestore.instance;
 
@@ -39,17 +40,11 @@ class Estado extends State {
             ],
           ),
 
-
+          
+          /*
           drawer: Drawer(
             child: ListView(
               children: [
-                // const DrawerHeader(
-                //   decoration: BoxDecoration(
-                //     color: Colors.blue,
-                //   ),
-                //   child: Text('Motolab Racing Team'),
-                // ),
-
                 UserAccountsDrawerHeader(
                   accountName: Text("Usuario"),
                   accountEmail: Text("mecanico@gmail.com"),
@@ -63,7 +58,6 @@ class Estado extends State {
                         colors: [Colors.blue, Colors.black],
                       )),
                 ),
-
                 ListTile(
                   selectedTileColor: Colors.green,
                   leading: Icon(Icons.people),
@@ -82,12 +76,13 @@ class Estado extends State {
               ],
             ),
           ),
+          */
 
+          drawer: menuIzquierdo(context),  
 
           body: crearListado(),
           floatingActionButton: FloatingActionButton(
               onPressed: () {
-                // insertar();
                 Navigator.pushNamed(context, 'clientesAgregar');
               },
               child: Icon(Icons.add)),
