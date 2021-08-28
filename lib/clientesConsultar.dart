@@ -60,7 +60,7 @@ class Estado extends State {
                       image: DecorationImage(
                           image: AssetImage("imagenes/motos/rossi.png")),
                       gradient: RadialGradient(
-                        colors: [Colors.blue, Colors.black54],
+                        colors: [Colors.blue, Colors.black],
                       )),
                 ),
 
