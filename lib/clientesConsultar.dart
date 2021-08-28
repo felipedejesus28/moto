@@ -96,7 +96,7 @@ Widget listar() {
                   print("Tap sencillo");
                 },
                 onLongPress: () {
-                  print("Tap largo");
+                  print("Tap long");
                 },
               ),
               Divider(),
