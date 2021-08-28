@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:motolab/serviciosConsultar.dart';
 import 'clientesAgregar.dart';
 import 'clientesConsultar.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() => runApp(Motolab());
 
@@ -17,7 +15,7 @@ class Estado extends State<Motolab> {
   @override
   Widget build(BuildContext context) => MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'serviciosConsultar',
+      initialRoute: 'clientesConsultar',
       routes: {
         '/' : (context) => ClientesConsultar(),
         'clientesAgregar' : (context) => ClientesAgregar(),

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:motolab/menu.dart';
 
-import 'drawer.dart';
+import 'menu.dart';
 
 final bd = FirebaseFirestore.instance;
 
@@ -32,7 +33,7 @@ class Estado extends State {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
-            title: Text("Servicios Consultar"),
+            title: Text("Servicios"),
             actions: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -145,8 +146,8 @@ ListView crearListado() {
   return ListView(
     children: [
       ListTile(
-        title: Text("Felipe"),
-        subtitle: Text("55 13 89 87 68"),
+        title: Text("Servicio de garantía"),
+        subtitle: Text("Chopper"),
       )
     ],
   );

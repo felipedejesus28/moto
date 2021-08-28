@@ -5,13 +5,13 @@ Widget menuIzquierdo(BuildContext context) {
     child: ListView(
       children: [
         UserAccountsDrawerHeader(
-          accountName: Text("Felipao"),
-          accountEmail: Text("felipe@gmail.com"),
+          accountName: Text("My myyyy"),
+          accountEmail: Text("fernandovazquez@gmail.com"),
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("imagenes/motos/rossi.png")),
-              gradient: RadialGradient(
-                colors: [Colors.blue, Colors.black54],
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.purple],
               )),
         ),
         ListTile(
@@ -21,6 +21,7 @@ Widget menuIzquierdo(BuildContext context) {
             Navigator.pushNamed(context, 'clientesConsultar');
           },
         ),
+        Divider(),
         ListTile(
           leading: Icon(Icons.motorcycle),
           title: const Text('Servicios'),

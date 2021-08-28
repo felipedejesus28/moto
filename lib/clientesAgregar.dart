@@ -24,6 +24,7 @@ class Estado extends State {
 
   final _formKey = GlobalKey<FormState>();
 
+  String coleccion= "clientes";
   TextEditingController txtNombreCompleto = TextEditingController();
   TextEditingController txtRFC = TextEditingController();
   TextEditingController txtCalle = TextEditingController();
@@ -52,7 +53,7 @@ class Estado extends State {
               },
             ),
             backgroundColor: Colors.lightGreen,
-            title: Text("Clientes Agregar"),
+            title: Text("Alta de clientes"),
           ),
           body: ListaCliente(),
         ),
@@ -70,6 +71,7 @@ class Estado extends State {
                 controller: txtNombreCompleto,
                 decoration: InputDecoration(
                     hintText: "Nombre completo",
+                    labelText: "Nombre",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
                 validator: (valor) => (valor == null || valor.isEmpty)
@@ -84,6 +86,7 @@ class Estado extends State {
               controller: txtRFC,
               decoration: InputDecoration(
                   hintText: "RFC",
+                  labelText: "RFC",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -112,6 +115,7 @@ class Estado extends State {
               controller: txtCalle,
               decoration: InputDecoration(
                   hintText: "Calle",
+                  labelText: "Calle",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -131,6 +135,7 @@ class Estado extends State {
               controller: txtNumeroExterior,
               decoration: InputDecoration(
                   hintText: "Número exterior",
+                  labelText: "No. Exterior",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -150,6 +155,7 @@ class Estado extends State {
               controller: txtNumeroInterior,
               decoration: InputDecoration(
                   hintText: "Número interior",
+                  labelText: "No. Interior",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
@@ -162,6 +168,7 @@ class Estado extends State {
               controller: txtColonia,
               decoration: InputDecoration(
                   hintText: "Colonia",
+                  labelText: "Colonia",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -177,6 +184,7 @@ class Estado extends State {
               controller: txtAlcaldia,
               decoration: InputDecoration(
                   hintText: "Alcaldía o municipio",
+                  labelText: "Alcaldía o municipio",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -192,6 +200,7 @@ class Estado extends State {
               controller: txtEntidadFederativa,
               decoration: InputDecoration(
                   hintText: "Entidad Federativa",
+                  labelText: "Entidad Federativa",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -207,6 +216,7 @@ class Estado extends State {
               controller: txtCodigoPostal,
               decoration: InputDecoration(
                   hintText: "Código Postal",
+                  labelText: "Código Postal",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -239,6 +249,7 @@ class Estado extends State {
               controller: txtCelular,
               decoration: InputDecoration(
                   hintText: "Celular",
+                  labelText: "Celular",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               // validator: (valor) => (valor == null || valor.isEmpty)
@@ -258,6 +269,7 @@ class Estado extends State {
               controller: txtTelefonoCasa,
               decoration: InputDecoration(
                   hintText: "Teléfono de casa",
+                  labelText: "Teléfono de casa",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
@@ -270,6 +282,7 @@ class Estado extends State {
               controller: txtEmail,
               decoration: InputDecoration(
                   hintText: "Correo Electrónico",
+                  labelText: "Correo Electrónico",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
               //   validator: (valor) => EmailValidator.validate(valor) ? null : "Por favor, escriba un correo válido",
@@ -283,6 +296,7 @@ class Estado extends State {
               controller: txtFacebook,
               decoration: InputDecoration(
                   hintText: "Facebook",
+                  labelText: "Facebook",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
@@ -295,6 +309,7 @@ class Estado extends State {
               controller: txtTwitter,
               decoration: InputDecoration(
                   hintText: "Twitter",
+                  labelText: "Twitter",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
@@ -307,6 +322,7 @@ class Estado extends State {
               controller: txtOtraRedSocial,
               decoration: InputDecoration(
                   hintText: "Otro",
+                  labelText: "Otro",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
@@ -323,8 +339,8 @@ class Estado extends State {
                   side: BorderSide(width: 2, color: Colors.lightGreen)),
               onPressed: () {
                 if (_formKey.currentState!.validate())
-                  insertar(
-                      'clientes',
+                  insertar(context,
+                      coleccion,
                       txtNombreCompleto.text,
                       txtRFC.text,
                       txtCalle.text,
@@ -353,6 +369,7 @@ class Estado extends State {
 }
 
 void insertar(
+    BuildContext context,
     String coleccion,
     String nombreCompleto,
     String rfc,
@@ -370,7 +387,7 @@ void insertar(
     String twitter,
     String otraRedSocial) async {
   try {
-    await bd.collection("clientes").doc(rfc).set({
+    await bd.collection("clientes").doc(/*rfc*/).set({
       'nombreCompleto': nombreCompleto,
       'rfc': rfc,
       'calle': calle,
@@ -387,6 +404,7 @@ void insertar(
       'twitter': twitter,
       'otraRedSocial': otraRedSocial
     });
+    Navigator.pop(context);
   } catch (error) {
     print(error);
   }
