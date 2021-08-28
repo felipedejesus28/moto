@@ -6,10 +6,10 @@ import 'package:firebase_core/firebase_core.dart';
 final bd = FirebaseFirestore.instance;
 
 main() {
-  runApp(ClientesConsultar());
+  runApp(ServiciosConsultar());
 }
 
-class ClientesConsultar extends StatefulWidget {
+class ServiciosConsultar extends StatefulWidget {
   @override
   createState() => Estado();
 }
@@ -21,6 +21,7 @@ class Estado extends State {
     Firebase.initializeApp().whenComplete(() {
       setState(() {});
       consultar();
+      print("Ya cargó");
     });
   }
 
@@ -29,8 +30,7 @@ class Estado extends State {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.grey,
-            title: Text("Clientes Consultar"),
+            title: Text("Servicios Consultar"),
             actions: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -38,8 +38,6 @@ class Estado extends State {
               )
             ],
           ),
-
-
           drawer: Drawer(
             child: ListView(
               children: [
@@ -53,9 +51,9 @@ class Estado extends State {
                 UserAccountsDrawerHeader(
                   accountName: Text("Usuario"),
                   accountEmail: Text("mecanico@gmail.com"),
-                    currentAccountPicture: CircleAvatar(radius: 5,
-                    backgroundImage: AssetImage("imagenes/logo/logo.png"),
-                   ),
+                  //  currentAccountPicture: CircleAvatar(radius: 5,
+                  //  backgroundImage: AssetImage("imagenes/logo/logo.png"),
+                  // ),
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("imagenes/motos/rossi.png")),
@@ -65,7 +63,6 @@ class Estado extends State {
                 ),
 
                 ListTile(
-                  selectedTileColor: Colors.green,
                   leading: Icon(Icons.people),
                   title: const Text('Clientes'),
                   onTap: () {
@@ -82,15 +79,7 @@ class Estado extends State {
               ],
             ),
           ),
-
-
           body: crearListado(),
-          floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                // insertar();
-                Navigator.pushNamed(context, 'clientesAgregar');
-              },
-              child: Icon(Icons.add)),
         ),
       );
 }

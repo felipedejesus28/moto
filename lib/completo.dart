@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(Motolab());
@@ -11,14 +10,6 @@ class Motolab extends StatefulWidget {
 
 class Estado extends State<Motolab> {
   String cuerpoCorreo = '';
-  final Email email = Email(
-    recipients: [],
-    bcc: ['fernandovazquezia@aragon.unam.mx'],
-    subject: 'Motocicleta recibida en Motolab',
-    body: 'Muchas gracias por elegir el servicio de Motolab',
-    isHTML: true,
-  );
-
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController txtNombre = TextEditingController();
@@ -37,24 +28,7 @@ class Estado extends State<Motolab> {
   TextEditingController txtNumeroChasis = TextEditingController();
   TextEditingController txtOtroDatoVehiculo = TextEditingController();
 
-
-  TextEditingController txtNombreCompleto = TextEditingController();
-  TextEditingController txtRFC = TextEditingController();
-  TextEditingController txtCalle = TextEditingController();
-  TextEditingController txtNumeroExterior = TextEditingController();
-  TextEditingController txtNumeroInterior = TextEditingController();
-  TextEditingController txtColonia = TextEditingController();
-  TextEditingController txtAlcaldia = TextEditingController();
-  TextEditingController txtEntidadFederativa = TextEditingController();
-  TextEditingController txtCodigoPostal = TextEditingController();
-  TextEditingController txtCelular = TextEditingController();
-  TextEditingController txtTelefonoCasa = TextEditingController();
-  TextEditingController txtFacebook = TextEditingController();
-  TextEditingController txtTwitter = TextEditingController();
-  TextEditingController txtOtraRedSocial = TextEditingController();
-  bool llavesVehiculo= false;
-
-  bool luzTrasera=false, portaHerramientas=false, cableFrenoDelantero= false, llantaDelanteraBM=false, paradoLateral=false;
+  bool llavesVehiculo= false, luzTrasera=false, portaHerramientas=false, cableFrenoDelantero= false, llantaDelanteraBM=false, paradoLateral=false;
   bool direccionalesDelanteras=false, palancaCambio=false, tarjetaCirculacion=false, carenado=false, cableClutch=false, paradorCentral=false;
   bool llantaTraseraBM=false, direccionalesTraseras=false, espejosDI=false, velocimetroTacometro=false, cableTacometro=false, salpicaderaDelantera=false;
   bool reposapiesDelanteros=false, luzFrontal=false, asientoDT=false, barrasDelanterasBM=false, cubreCadena=false, salpicaderaTrasera=false, reposapiesTraseros=false;
@@ -120,279 +94,6 @@ class Estado extends State<Motolab> {
       //    ListaCliente()
 
       ));
-
-  Form ListaCliente() {
-    return Form(
-          key: _formKey,
-          child: ListView(
-            children: <Widget>[
-              // * NOMBRE COMPLETO
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                    controller: txtNombreCompleto,
-                    decoration: InputDecoration(
-                        hintText: "Nombre completo",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    validator: (valor) => (valor == null || valor.isEmpty)
-                        ? "Por favor escriba un nombre"
-                        : null),
-              ),
-
-              // RFC
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  controller: txtRFC,
-                  decoration: InputDecoration(
-                      hintText: "RFC",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba un nombre"
-                  //     : null
-                ),
-              ),
-
-              // CORTINA DE DIRECCIÓN
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 8.0, right: 8.0, top: 20),
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  color: Color.fromARGB(180, 60, 120, 180),
-                  child: Text(
-                    "DIRECCIÓN",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-
-              // * CALLE
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtCalle,
-                  decoration: InputDecoration(
-                      hintText: "Calle",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba la calle"
-                  //     : null
-                ),
-              ),
-
-              // * NUMERO EXTERIOR
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  controller: txtNumeroExterior,
-                  decoration: InputDecoration(
-                      hintText: "Número exterior",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba el número exterior"
-                  //     : null
-                ),
-              ),
-
-              // NÚMERO INTERIOR
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  controller: txtNumeroInterior,
-                  decoration: InputDecoration(
-                      hintText: "Número interior",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-
-              // * COLONIA
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtColonia,
-                  decoration: InputDecoration(
-                      hintText: "Colonia",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba una colonia"
-                  //     : null
-                ),
-              ),
-
-              // * ALCALDÍA O MUNICIPIO
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtAlcaldia,
-                  decoration: InputDecoration(
-                      hintText: "Alcaldía o municipio",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba la alcaldía o municipio"
-                  //     : null
-                ),
-              ),
-
-              // * ENTIDAD FEDERATIVA
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtEntidadFederativa,
-                  decoration: InputDecoration(
-                      hintText: "Entidad Federativa",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba la Entidad Federativa"
-                  //     : null
-                ),
-              ),
-
-              //*  C.P.
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtCodigoPostal,
-                  decoration: InputDecoration(
-                      hintText: "Código Postal",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba el código postal"
-                  //     : null
-                ),
-              ),
-
-              // CORTINA DE DATOS DE CONTACTO
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 8.0, right: 8.0, top: 20),
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  color: Color.fromARGB(180, 60, 120, 180),
-                  child: Text(
-                    "DATOS DE CONTACTO",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-
-              // * CELULAR
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.phone,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  controller: txtCelular,
-                  decoration: InputDecoration(
-                      hintText: "Celular",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  // validator: (valor) => (valor == null || valor.isEmpty)
-                  //     ? "Por favor escriba un teléfono celular"
-                  //     : null
-                ),
-              ),
-
-              // TELÉFONO DE CASA
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.phone,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  controller: txtTelefonoCasa,
-                  decoration: InputDecoration(
-                      hintText: "Teléfono de casa",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-
-              // CORREO ELECTRÓNICO
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: "Correo Electrónico",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  //   validator: (valor) => EmailValidator.validate(valor) ? null : "Por favor, escriba un correo válido",
-                ),
-              ),
-
-              // FACEBOOK
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtFacebook,
-                  decoration: InputDecoration(
-                      hintText: "Facebook",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-
-              // TWITTER
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtTwitter,
-                  decoration: InputDecoration(
-                      hintText: "Twitter",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-
-              // OTRO
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: txtOtraRedSocial,
-                  decoration: InputDecoration(
-                      hintText: "Otro",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate())
-                    print("Datos validados ${txtNombreCompleto.text}");
-                  // Enviar los datos a Internet
-                },
-                child: Text('Agregar cliente'),
-              ),
-              // Add TextFormFields and ElevatedButton here.
-            ],
-          ),
-        );
-  }
-
-  ///
-  /// SERVICIOS
-  ///
 
   Form ListaServicios() {
     return Form(
@@ -885,7 +586,7 @@ class Estado extends State<Motolab> {
               ),
               Image.asset("imagenes/motos/motoDerecha.png"),
               Image.asset("imagenes/motos/motoIzquierda.png"),
-              Image.asset("imagenes/motos/tanque.png"),
+              Image.asset("imagenes/motos/tanqueGasolina.png"),
 
 
                 // CORTINA DE COSTOS
@@ -1033,13 +734,7 @@ class Estado extends State<Motolab> {
                       : print("No reparación");
                   cuerpoCorreo = cuerpoCorreo += "</HTML>";
 
-                  FlutterEmailSender.send(Email(
-                    recipients: [mail],
-                    bcc: ['fernandovazquezia@aragon.unam.mx'],
-                    subject: 'Motocicleta recibida en Motolab',
-                    body: cuerpoCorreo,
-                    isHTML: true,
-                  ));
+
                 },
                 child: Text("Enviar"),
               )
