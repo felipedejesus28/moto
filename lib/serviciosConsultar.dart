@@ -41,52 +41,7 @@ class Estado extends State {
               )
             ],
           ),
-
-          /*
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                // const DrawerHeader(
-                //   decoration: BoxDecoration(
-                //     color: Colors.blue,
-                //   ),
-                //   child: Text('Motolab Racing Team'),
-                // ),
-
-                UserAccountsDrawerHeader(
-                  accountName: Text("Usuario"),
-                  accountEmail: Text("mecanico@gmail.com"),
-                  //  currentAccountPicture: CircleAvatar(radius: 5,
-                  //  backgroundImage: AssetImage("imagenes/logo/logo.png"),
-                  // ),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("imagenes/motos/rossi.png")),
-                      gradient: RadialGradient(
-                        colors: [Colors.blue, Colors.black54],
-                      )),
-                ),
-
-                ListTile(
-                  leading: Icon(Icons.people),
-                  title: const Text('Clientes'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'clientesConsultar');
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.motorcycle),
-                  title: const Text('Servicios'),
-                  onTap: () {
-                    Navigator.pushNamed(context, 'serviciosConsultar');
-                  },
-                ),
-              ],
-            ),
-          ),
-          */
           drawer: menuIzquierdo(context),
-
           body: crearListado(),
         ),
       );

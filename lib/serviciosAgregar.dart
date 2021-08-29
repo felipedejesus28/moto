@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:motolab/menu.dart';
 
-void main() => runApp(Motolab());
+void main() => runApp(ServiciosAgregar());
 
-class Motolab extends StatefulWidget {
+class ServiciosAgregar extends StatefulWidget {
   @override
   createState() => Estado();
 }
 
-class Estado extends State<Motolab> {
-  String cuerpoCorreo = '';
+class Estado extends State<ServiciosAgregar> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController txtNombre = TextEditingController();
@@ -17,9 +17,18 @@ class Estado extends State<Motolab> {
   String nombre = '';
   String mail = '';
 
-  bool servicioMantenimientoRegular = false, servicioRevisionGarantia = false, servicioReparacion = false;
-  bool sistemaElectrico = false, sistemaMecanico = false, chasis = false;
-  bool chooper= false, trabajo=false, cross= false, scooter=false, deportiva=false, street=false;
+  bool servicioMantenimientoRegular = false,
+      servicioRevisionGarantia = false,
+      servicioReparacion = false,
+      sistemaElectrico = false,
+      sistemaMecanico = false,
+      chasis = false,
+      chooper = false,
+      trabajo = false,
+      cross = false,
+      scooter = false,
+      deportiva = false,
+      street = false;
   TextEditingController txtOtraMoto = TextEditingController();
   TextEditingController txtModelo = TextEditingController();
   TextEditingController txtKilometraje = TextEditingController();
@@ -28,76 +37,64 @@ class Estado extends State<Motolab> {
   TextEditingController txtNumeroChasis = TextEditingController();
   TextEditingController txtOtroDatoVehiculo = TextEditingController();
 
-  bool llavesVehiculo= false, luzTrasera=false, portaHerramientas=false, cableFrenoDelantero= false, llantaDelanteraBM=false, paradoLateral=false;
-  bool direccionalesDelanteras=false, palancaCambio=false, tarjetaCirculacion=false, carenado=false, cableClutch=false, paradorCentral=false;
-  bool llantaTraseraBM=false, direccionalesTraseras=false, espejosDI=false, velocimetroTacometro=false, cableTacometro=false, salpicaderaDelantera=false;
-  bool reposapiesDelanteros=false, luzFrontal=false, asientoDT=false, barrasDelanterasBM=false, cubreCadena=false, salpicaderaTrasera=false, reposapiesTraseros=false;
+  bool llavesVehiculo = false,
+      luzTrasera = false,
+      portaHerramientas = false,
+      cableFrenoDelantero = false,
+      llantaDelanteraBM = false,
+      paradoLateral = false;
+  bool direccionalesDelanteras = false,
+      palancaCambio = false,
+      tarjetaCirculacion = false,
+      carenado = false,
+      cableClutch = false,
+      paradorCentral = false;
+  bool llantaTraseraBM = false,
+      direccionalesTraseras = false,
+      espejosDI = false,
+      velocimetroTacometro = false,
+      cableTacometro = false,
+      salpicaderaDelantera = false;
+  bool reposapiesDelanteros = false,
+      luzFrontal = false,
+      asientoDT = false,
+      barrasDelanterasBM = false,
+      cubreCadena = false,
+      salpicaderaTrasera = false,
+      reposapiesTraseros = false;
 
-  TextEditingController txtCostoTotal= TextEditingController();
+  TextEditingController txtCostoTotal = TextEditingController();
   TextEditingController txtAnticipo = TextEditingController();
 
-  bool efectivo=false, tarjetaCredito= false, tarjetaDebito=false;
+  bool efectivo = false, tarjetaCredito = false, tarjetaDebito = false;
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+  Widget build(BuildContext context) {
+    final clientes = ModalRoute.of(context)!.settings.arguments;
+    print(clientes);
+
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
           appBar: AppBar(
             title: Text("Orden de servicio"),
             backgroundColor: Colors.deepPurple,
-          ),
-          drawer: Drawer(
-            child: ListView(
-              children: [
-                // const DrawerHeader(
-                //   decoration: BoxDecoration(
-                //     color: Colors.blue,
-                //   ),
-                //   child: Text('Motolab Racing Team'),
-                // ),
-
-                UserAccountsDrawerHeader(
-                  accountName: Text("Usuario"),
-                  accountEmail: Text("mecanico@gmail.com"),
-                   //  currentAccountPicture: CircleAvatar(radius: 5,
-                   //  backgroundImage: AssetImage("imagenes/logo/logo.png"),
-                   // ),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("imagenes/motos/rossi.png")
-                    ),
-                    gradient: RadialGradient(colors: [
-                      Colors.blue,
-                      Colors.black54
-                    ],
-                    )
-                  ),
-                ),
-
-                ListTile(
-                  leading: Icon(Icons.people),
-                  title: const Text('Clientes'),
-                  onTap: () {
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.motorcycle),
-                  title: const Text('Servicios'),
-                  onTap: () {
-                  },
-                ),
-              ],
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_outlined),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ),
-          body:
-            ListaServicios(),
-      //    ListaCliente()
-
-      ));
+          drawer: menuIzquierdo(context),
+          body: ListaServicios(),
+          //    ListaCliente()
+        ));
+  }
 
   Form ListaServicios() {
     return Form(
-    //  key: _formKey,
+      //  key: _formKey,
       child: Stack(
         children: [
           Center(
@@ -107,22 +104,10 @@ class Estado extends State<Motolab> {
           ListView(
             children: [
 
-              // CORTINA TIPO DE SERVICIO
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Container(
-              //     padding: EdgeInsets.all(5),
-              //     color: Color.fromARGB(180, 60, 120, 180),
-              //     child: Text(
-              //       "Tipo de servicio",
-              //       style: TextStyle(color: Colors.white),
-              //     ),
-              //   ),
-              // ),
               CheckboxListTile(
                   title: Text("Mantenimiento regular"),
                   value: servicioMantenimientoRegular,
-                  onChanged: (bool? seleccion) {
+                  onChanged: (seleccion) {
                     setState(() {
                       servicioMantenimientoRegular = seleccion!;
                     });
@@ -332,7 +317,7 @@ class Estado extends State<Motolab> {
                   padding: EdgeInsets.all(5),
                   color: Color.fromARGB(180, 60, 120, 180),
                   child: Text(
-                      "Inventario del vehículo",
+                    "Inventario del vehículo",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -508,7 +493,6 @@ class Estado extends State<Motolab> {
                     });
                   }),
 
-
               CheckboxListTile(
                   title: Text("Luz trasera"),
                   value: luzTrasera,
@@ -588,8 +572,7 @@ class Estado extends State<Motolab> {
               Image.asset("imagenes/motos/motoIzquierda.png"),
               Image.asset("imagenes/motos/tanqueGasolina.png"),
 
-
-                // CORTINA DE COSTOS
+              // CORTINA DE COSTOS
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -607,9 +590,9 @@ class Estado extends State<Motolab> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   keyboardType: TextInputType.phone,
-                   inputFormatters: <TextInputFormatter>[
-                     FilteringTextInputFormatter.digitsOnly,
-                   ],
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
                   controller: txtCostoTotal,
                   decoration: InputDecoration(
                       hintText: "Costo total",
@@ -664,7 +647,6 @@ class Estado extends State<Motolab> {
                         });
                       }),
                   Text("Efectivo"),
-
                   Checkbox(
 //                  title: Text("Tipo de pago"),
                       value: tarjetaCredito,
@@ -674,7 +656,6 @@ class Estado extends State<Motolab> {
                         });
                       }),
                   Text("T. Crédito"),
-
                   Checkbox(
 //                  title: Text("Tipo de pago"),
                       value: tarjetaDebito,
@@ -684,10 +665,8 @@ class Estado extends State<Motolab> {
                         });
                       }),
                   Text("T. Débito"),
-
                 ],
               ),
-
 
               // FECHAS
               Padding(
@@ -702,7 +681,6 @@ class Estado extends State<Motolab> {
                 ),
               ),
 
-
               // ACEPTACIÓN
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -716,26 +694,8 @@ class Estado extends State<Motolab> {
                 ),
               ),
 
-
               ElevatedButton(
-                onPressed: () {
-                  mail = txtMail.text;
-
-                  cuerpoCorreo =
-                      "<HTML>Muchas gracias por confiar en Motolab, los servicios a realizarse son: ";
-                  servicioMantenimientoRegular == true
-                      ? cuerpoCorreo += "<HR> Mantenimiento regular"
-                      : print("No mantenimiento");
-                  servicioRevisionGarantia == true
-                      ? cuerpoCorreo += "<HR> Revisión por garantía"
-                      : print("No garantía");
-                  servicioReparacion == true
-                      ? cuerpoCorreo += " <HR>Reparación"
-                      : print("No reparación");
-                  cuerpoCorreo = cuerpoCorreo += "</HTML>";
-
-
-                },
+                onPressed: () {},
                 child: Text("Enviar"),
               )
             ],
@@ -745,7 +705,6 @@ class Estado extends State<Motolab> {
     );
   }
 }
-
 
 // MAILER
 // https://pub.dev/packages/mailer

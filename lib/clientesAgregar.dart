@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:motolab/sms.dart';
+import 'baseDatos.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
-
-final bd = FirebaseFirestore.instance;
+import 'package:fluttertoast/fluttertoast.dart';
 
 main() => runApp(ClientesAgregar());
 
@@ -24,7 +25,7 @@ class Estado extends State {
 
   final _formKey = GlobalKey<FormState>();
 
-  String coleccion= "clientes";
+  String coleccion = "clientes";
   TextEditingController txtNombreCompleto = TextEditingController();
   TextEditingController txtRFC = TextEditingController();
   TextEditingController txtCalle = TextEditingController();
@@ -242,20 +243,19 @@ class Estado extends State {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
-              keyboardType: TextInputType.phone,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
-              controller: txtCelular,
-              decoration: InputDecoration(
-                  hintText: "Celular",
-                  labelText: "Celular",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-              // validator: (valor) => (valor == null || valor.isEmpty)
-              //     ? "Por favor escriba un teléfono celular"
-              //     : null
-            ),
+                keyboardType: TextInputType.phone,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+                controller: txtCelular,
+                decoration: InputDecoration(
+                    hintText: "Celular",
+                    labelText: "Celular",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                validator: (valor) => (valor == null || valor.isEmpty)
+                    ? "Por favor escriba un teléfono celular"
+                    : null),
           ),
 
           // TELÉFONO DE CASA
@@ -338,8 +338,9 @@ class Estado extends State {
                   elevation: 3,
                   side: BorderSide(width: 2, color: Colors.lightGreen)),
               onPressed: () {
-                if (_formKey.currentState!.validate())
-                  insertar(context,
+                if (_formKey.currentState!.validate()) {
+                  insertar(
+                      context,
                       coleccion,
                       txtNombreCompleto.text,
                       txtRFC.text,
@@ -356,11 +357,17 @@ class Estado extends State {
                       txtFacebook.text,
                       txtTwitter.text,
                       txtOtraRedSocial.text);
+
+                  enviarSMS(
+                      "5513894675",
+                      "CLIENTE NUEVO: Su nombre: ${txtNombreCompleto.text}");
+                  //Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, '/clientesConsultar');
+                }
               },
               child: Text('AGREGAR'),
             ),
           )
-
           // Add TextFormFields and ElevatedButton here.
         ],
       ),
@@ -387,7 +394,7 @@ void insertar(
     String twitter,
     String otraRedSocial) async {
   try {
-    await bd.collection("clientes").doc(/*rfc*/).set({
+    await baseDatos.collection("clientes").doc(celular).set({
       'nombreCompleto': nombreCompleto,
       'rfc': rfc,
       'calle': calle,
@@ -404,7 +411,6 @@ void insertar(
       'twitter': twitter,
       'otraRedSocial': otraRedSocial
     });
-    Navigator.pop(context);
   } catch (error) {
     print(error);
   }
