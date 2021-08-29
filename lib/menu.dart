@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget menuIzquierdo(BuildContext context) {
   return Drawer(
+    elevation: 30,
     child: ListView(
       children: [
         UserAccountsDrawerHeader(
@@ -18,7 +19,7 @@ Widget menuIzquierdo(BuildContext context) {
           leading: Icon(Icons.people),
           title: const Text('Clientes'),
           onTap: () {
-            Navigator.pushNamed(context, 'clientesConsultar');
+            Navigator.pushNamed(context, '/clientesConsultar');
           },
         ),
         Divider(),
@@ -26,7 +27,7 @@ Widget menuIzquierdo(BuildContext context) {
           leading: Icon(Icons.motorcycle),
           title: const Text('Servicios'),
           onTap: () {
-            Navigator.pushNamed(context, 'serviciosConsultar');
+            Navigator.pushNamed(context, '/serviciosConsultar');
           },
         ),
       ],
